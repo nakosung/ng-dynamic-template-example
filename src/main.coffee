@@ -7,21 +7,29 @@ angular.module('test', [])
 				cur = undefined
 				remove = undefined
 				bye_watch = scope.$watch ->
-					template = scope.template()							
-					
+					# evaluate 'template'
+					template = scope.template()	
+
+					# only if when it changes
 					return if template == cur
 
-					cur = template
+					# cache 'template' to compare later with
+					cur = template 
 
+					# cleanup old one
 					remove?()
 
-					element.html template
+					# setup raw-html
+					element.html template 
 
-					new_scope = scope.$new()
-
+					# prepare new scope for new template
+					new_scope = scope.$new() 
+					
+					# this is the clean up function
 					remove = -> new_scope.$destroy()
 
-					$compile(element.contents()) new_scope
+					# link them up
+					$compile(element.contents()) new_scope 
 					
 				scope.$on '$destroy', ->
 					bye_watch()
