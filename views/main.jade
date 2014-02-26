@@ -1,0 +1,26 @@
+doctype html
+html(ng-app="test")
+	head
+		title Hello!
+		-each script in scripts
+			script(type='text/javascript',src= script)
+		link(rel='stylesheet',href='bower_components/bootstrap/dist/css/bootstrap.min.css')
+
+	body
+		.row(ng-controller="MainCtrl")
+			.col-md-6
+				ul.nav.nav-tabs
+					li(ng-repeat="x in [1,2,3]",ng-class='{active:x==index}')
+						a(href='#',ng-click='sel(x)') {{x}}
+
+				dynamic-template(template='templates[index]') hello
+
+			.col-md-6
+				table.table
+					tr
+						td index
+						td {{index}}
+					tr
+						td template
+						td {{templates[index]}}
+				
