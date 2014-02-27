@@ -13,7 +13,7 @@ html(ng-app="test")
 					li(ng-repeat="x in [1,2,3]",ng-class='{active:x==index}')
 						a(href='#',ng-click='sel(x)') {{x}}
 
-				dynamic-template(template='templates[index]') hello
+				div(ng-include="path")
 
 			.col-md-6
 				table.table
